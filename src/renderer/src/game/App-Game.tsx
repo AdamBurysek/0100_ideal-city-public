@@ -106,7 +106,7 @@ function AppGame(props: any) {
 
         setImages((prevImages) => {
           let updatedImages = [...prevImages];
-          if (updatedImages.length + 1 > maximumStoredImages) {
+          while (updatedImages.length + 1 > maximumStoredImages) {
             const sortedImages = [...updatedImages].sort(
               (a, b) => parseInt(a.id) - parseInt(b.id)
             );
