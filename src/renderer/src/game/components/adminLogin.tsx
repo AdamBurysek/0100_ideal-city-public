@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import KeyboardComponent from "./keyboard";
 import { useState } from "react";
-import adminPassword from "../data/password.json";
 
 interface AdminLoginProps {
   desc: string;
   setDesc: (value: string) => void;
   resetSequence: () => void;
   setGameStarts: (value: boolean) => void;
+  adminPassword: string | null;
 }
 
 const AdminLogin: React.FC<AdminLoginProps> = (props) => {
@@ -22,7 +22,7 @@ const AdminLogin: React.FC<AdminLoginProps> = (props) => {
   }
 
   function handleAdminSucessButtonClick() {
-    if (props.desc === adminPassword.password) {
+    if (props.desc === props.adminPassword) {
       props.setGameStarts(true);
       props.setDesc("");
       navigate("/adminpanel");

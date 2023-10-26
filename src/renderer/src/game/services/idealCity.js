@@ -16,6 +16,14 @@ class IdealCityDataService {
   deleteImage(id) {
     return http.delete(`/idealcity/delete?id=${id}`);
   }
+
+  getAdminPassword() {
+    return http.get("/password");
+  }
+
+  getMaximumImages() {
+    return http.get("/maximages");
+  }
 }
 
 export default new IdealCityDataService();
