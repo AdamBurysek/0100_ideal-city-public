@@ -1,0 +1,110 @@
+.file-load_box {
+  position: absolute;
+  top: 100px;
+  left: 700px;
+  color: white;
+  /* scale: 2; */
+}
+
+.img_title {
+  position: absolute;
+  top: 630px;
+  width: 500px;
+  left: -240px;
+}
+
+.admin-save-img_button {
+  width: 373px;
+  height: 77px;
+  top: 615px;
+  left: 370px;
+}
+
+.edit_img {
+  width: 300px;
+  top: 262px;
+  left: 60px;
+  padding-bottom: 8px;
+}
+
+.add_img {
+  width: 300px;
+  top: 357px;
+  left: 60px;
+  padding-bottom: 8px;
+}
+
+.edit-img_box {
+  position: absolute;
+  left: 700px;
+  top: 100px;
+  height: 900px;
+  width: 600px;
+  border: 5px solid rgba(255, 255, 255, 0.289);
+  overflow: auto;
+  background-color: rgba(255, 255, 255, 0.496);
+}
+
+.edit-img {
+  width: 200px;
+}
+
+.deletable_button {
+  position: absolute;
+  left: 250px;
+  height: 60px;
+  width: 60px;
+  margin-top: -130px;
+  border-radius: 50px;
+  border: 2px solid white;
+}
+
+.edit-button_icon {
+  position: relative;
+  top: 2px;
+  left: -2px;
+  rotate: 30deg;
+}
+
+.delete_button {
+  left: 350px;
+  background-color: rgb(200, 0, 0);
+}
+
+.edit-info_text {
+  font-family: "Dimenze-Regular";
+  color: white;
+}
+
+.edit-info_text-title {
+  font-size: 35px;
+}
+
+.edit-info_box {
+  position: absolute;
+  top: 100px;
+  left: 1350px;
+  width: 500px;
+}
+
+.edit-info_text-desc {
+  padding-top: 50px;
+}
+
+.active_button {
+  background-color: rgb(4, 213, 4);
+}
+
+.admin-file_select {
+  position: absolute;
+  scale: 2;
+  left: 100px;
+}
+
+.admin-image_preview {
+  position: absolute;
+  top: 50px;
+  left: -250px;
+  height: 500px;
+  position: absolute;
+}
