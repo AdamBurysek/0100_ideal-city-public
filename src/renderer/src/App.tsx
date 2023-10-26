@@ -23,8 +23,10 @@ function App() {
     };
     handleActivity();
     window.addEventListener("mousedown", handleActivity);
+    window.addEventListener("mousemove", handleActivity);
     return () => {
       window.removeEventListener("mousedown", handleActivity);
+      window.removeEventListener("mousemove", handleActivity);
     };
   }, []);
 
