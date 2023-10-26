@@ -11,9 +11,15 @@
   src: url("./fonts/Dimenze-Regular.otf") format("opentype");
 }
 
+h1,
+h4 {
+  font-family: "Dimenze-Bold ";
+}
+
 body {
   margin: 0;
   padding: 0;
+  background-color: black;
 }
 
 #root {
@@ -52,12 +58,12 @@ body {
   z-index: -50;
 }
 
-.fake_game {
+/* .fake_game {
   position: relative;
   width: 1920px;
   height: 1080px;
   z-index: -5;
-}
+} */
 
 .clouds {
   position: absolute;
@@ -187,7 +193,6 @@ body {
   justify-self: end;
   right: -83px;
   transition: all 0.8s;
-  touch-action: none;
 }
 
 .side-bar .active {
@@ -245,7 +250,6 @@ body {
   right: 35px;
   z-index: 5;
   transition: translate 1s linear;
-  touch-action: none;
 }
 
 .map_hide {

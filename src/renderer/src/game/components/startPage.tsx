@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { useNavigate } from "react-router-dom";
@@ -15,11 +15,38 @@ interface StartPageProps {
   setGameStarts: (value: boolean) => void;
   images: ImageItem[];
   language: string;
+  isActive: boolean;
+}
+
+interface ImageGallery {
+  play: () => void;
+  pause: () => void;
+  toggleFullScreen: () => void;
 }
 
 const StartPage: React.FC<StartPageProps> = (props) => {
+  const [currentDesc, setCurrentDesc] = useState<string>("");
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+
   const navigate = useNavigate();
-  const [currentDesc, setCurrentDesc] = useState("");
+  const imageGalleryRef = useRef<ImageGallery | null>(null);
+
+  useEffect(() => {
+    autoPlay();
+  }, [props.isActive]);
+
+  function autoPlay() {
+    if (imageGalleryRef.current && props.isActive === false) {
+      imageGalleryRef.current.play();
+
+      if (isFullscreen === true) {
+        imageGalleryRef.current.toggleFullScreen();
+      }
+    }
+    if (imageGalleryRef.current && props.isActive === true) {
+      imageGalleryRef.current.pause();
+    }
+  }
 
   function halndeTakeImageClick() {
     props.setGameStarts(true);
@@ -30,7 +57,9 @@ const StartPage: React.FC<StartPageProps> = (props) => {
     setCurrentDesc(props.images[index].originalTitle);
   };
 
-  const imageGalleryRef = useRef(null);
+  const handleFullscreenChange = (status: boolean) => {
+    setIsFullscreen(status);
+  };
 
   return (
     <>
@@ -39,10 +68,11 @@ const StartPage: React.FC<StartPageProps> = (props) => {
           <ImageGallery
             ref={imageGalleryRef}
             items={props.images}
-            showFullscreenButton={true}
-            showPlayButton={true}
+            showFullscreenButton={props.isActive ? true : false}
+            showPlayButton={props.isActive ? true : false}
             showNav={false}
             onSlide={handleSlideChange}
+            onScreenChange={handleFullscreenChange}
           />
         </div>
         <div

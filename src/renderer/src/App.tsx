@@ -14,13 +14,14 @@ function App() {
   const [lastActivity, setLastActivity] = useState<Date | null>(null);
   const [isActive, setIsActive] = useState(false);
 
-  const inactivityTimeout = 3.5 * 60 * 1000;
+  const inactivityTimeout = 0.2 * 60 * 1000;
 
   useEffect(() => {
     const handleActivity = () => {
       setLastActivity(new Date());
       setIsActive(true);
     };
+    handleActivity();
     window.addEventListener("mousedown", handleActivity);
     return () => {
       window.removeEventListener("mousedown", handleActivity);

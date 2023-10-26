@@ -37,20 +37,22 @@ function Game(props: any) {
   const maximumStoredImages: number = maximumPictures.maximumPictures;
 
   useEffect(() => {
-    // const storedImages = localStorage.getItem("images");
     IdealCityDataService.getImages().then((response: any) => {
       setImages(JSON.parse(JSON.stringify(response.data.images)));
       console.log(JSON.parse(JSON.stringify(response.data.images)));
     });
   }, []);
 
-  // useEffect(() => {
-  //   const storedImages = localStorage.getItem("images");
-  //   if (storedImages) {
-  //     setImages(JSON.parse(storedImages));
-  //     console.log(JSON.parse(storedImages));
-  //   }
-  // }, []);
+  function gameReset() {
+    if (props.isActive === false) {
+      navigate("/");
+      props.setGameStarts(false);
+    }
+  }
+
+  useEffect(() => {
+    gameReset();
+  }, [props.isActive]);
 
   const handleAdminButtonClick = (num: string) => {
     const newSequence = [...sequence, num];
@@ -95,7 +97,6 @@ function Game(props: any) {
 
         IdealCityDataService.addImage(JSON.stringify(imageItem)).then(
           (response: any) => {
-            // setImages(JSON.parse(JSON.stringify(response.data.images)));
             console.log(response);
           }
         );
@@ -122,7 +123,6 @@ function Game(props: any) {
             }
           }
           updatedImages.push(imageItem);
-          // localStorage.setItem("images", JSON.stringify(updatedImages));
           return updatedImages;
         });
         setDesc("");
@@ -142,15 +142,12 @@ function Game(props: any) {
     });
     setImages((prevImages) => {
       const updatedImages = prevImages.filter((image) => image.id !== id);
-
-      // localStorage.setItem("images", JSON.stringify(updatedImages));
       return updatedImages;
     });
   };
 
   const handleDeletableChange = (id: string, value: boolean) => {
     IdealCityDataService.updateImage(id, value).then((response: any) => {
-      // setImages(JSON.parse(JSON.stringify(response.data.images)));
       console.log(response);
     });
     const updatedImages = images.map((image) => {
@@ -159,9 +156,7 @@ function Game(props: any) {
       }
       return image;
     });
-
     setImages(updatedImages);
-    // localStorage.setItem("images", JSON.stringify(updatedImages));
   };
 
   return (
@@ -174,6 +169,7 @@ function Game(props: any) {
               setGameStarts={props.setGameStarts}
               images={images}
               language={props.language}
+              isActive={props.isActive}
             />
           }
         />

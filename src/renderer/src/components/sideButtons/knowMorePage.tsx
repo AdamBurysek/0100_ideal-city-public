@@ -5,8 +5,16 @@ import Sondgo from "../../game/images/Songdo International City, Jižní Korea
 import Stockholm from "../../game/images/Stockholm, Švédsko.jpeg";
 import TheLine from "../../game/images/The Line, Spojené arabské emiráty.webp";
 import Vilatopia from "../../game/images/Vilatopia, Nizozemsko.jpeg";
+import { useEffect, useRef } from "react";
 
 const KnowMorePage = (props: any) => {
+  const knowMoreElement = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (knowMoreElement.current) {
+      knowMoreElement.current.scrollTo({ top: 0 });
+    }
+  }, [props.activePage === "know-more"]);
   return (
     <div
       className={
@@ -15,7 +23,10 @@ const KnowMorePage = (props: any) => {
           : "know-more_window know-more_hide"
       }
     >
-      <div className="know-more_content">
+      <div
+        ref={knowMoreElement}
+        className="know-more_content"
+      >
         {/* {props.language === "cz" && (
           <div dangerouslySetInnerHTML={{ __html: czText }} />
         )}

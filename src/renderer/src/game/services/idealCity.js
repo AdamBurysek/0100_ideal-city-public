@@ -14,7 +14,7 @@ class IdealCityDataService {
   }
 
   deleteImage(id) {
-    return http.delete(`/idealcity/delete?id=${id}`, { data: { id: id } });
+    return http.delete(`/idealcity/delete?id=${id}`);
   }
 }
 
