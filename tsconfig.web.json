@@ -22,7 +22,5 @@
     "src/renderer/howTo.json",
     "src/renderer/knowMore.json",
     "src/renderer/src/data/sectionsData.json",
-    "src/renderer/src/game/data/max-pics.json",
-    "src/renderer/src/game/data/password.json",
   ]
 }
