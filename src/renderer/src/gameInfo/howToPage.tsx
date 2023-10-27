@@ -1,5 +1,5 @@
 import "./howToPage.css";
-import data from "../../../howTo.json";
+import data from "../../howTo.json";
 import { useEffect, useRef } from "react";
 
 const HowToPage = (props: any) => {

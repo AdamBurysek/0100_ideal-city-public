@@ -1,10 +1,10 @@
 import "./knowMorePage.css";
-import MasdarCity from "../../game/images/Masdar City, Spojené arabské emiráty.jpeg";
-import Oulu from "../../game/images/Oulu, Finsko.jpeg";
-import Sondgo from "../../game/images/Songdo International City, Jižní Korea.jpeg";
-import Stockholm from "../../game/images/Stockholm, Švédsko.jpeg";
-import TheLine from "../../game/images/The Line, Spojené arabské emiráty.webp";
-import Vilatopia from "../../game/images/Vilatopia, Nizozemsko.jpeg";
+import MasdarCity from "../game/images/Masdar City, Spojené arabské emiráty.jpeg";
+import Oulu from "../game/images/Oulu, Finsko.jpeg";
+import Sondgo from "../game/images/Songdo International City, Jižní Korea.jpeg";
+import Stockholm from "../game/images/Stockholm, Švédsko.jpeg";
+import TheLine from "../game/images/The Line, Spojené arabské emiráty.webp";
+import Vilatopia from "../game/images/Vilatopia, Nizozemsko.jpeg";
 import { useEffect, useRef } from "react";
 
 const KnowMorePage = (props: any) => {

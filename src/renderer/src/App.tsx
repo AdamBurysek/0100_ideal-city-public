@@ -1,8 +1,8 @@
 import UserInterface from "./components/userInterface";
 import { useEffect, useState } from "react";
 import Game from "./game/Game";
-import HowToPage from "./components/sideButtons/howToPage";
-import KnowMorePage from "./components/sideButtons/knowMorePage";
+import HowToPage from "./gameInfo/howToPage";
+import KnowMorePage from "./gameInfo/knowMorePage";
 import MapPage from "./components/sideButtons/mapPage";
 import BlackPage from "./components/sideButtons/blackPage";
 import { switchLanguage } from "./utils/functions";
