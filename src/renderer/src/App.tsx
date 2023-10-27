@@ -12,7 +12,7 @@ function App() {
   const [language, setLanguage] = useState<string>("cz");
   const [gameStarts, setGameStarts] = useState<boolean>(false);
   const [lastActivity, setLastActivity] = useState<Date | null>(null);
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState<boolean>(false);
 
   const inactivityTimeout = 3.5 * 60 * 1000;
 
@@ -23,10 +23,10 @@ function App() {
     };
     handleActivity();
     window.addEventListener("mousedown", handleActivity);
-    window.addEventListener("mousemove", handleActivity);
+    window.addEventListener("touchmove", handleActivity);
     return () => {
       window.removeEventListener("mousedown", handleActivity);
-      window.removeEventListener("mousemove", handleActivity);
+      window.removeEventListener("touchmove", handleActivity);
     };
   }, []);
 
