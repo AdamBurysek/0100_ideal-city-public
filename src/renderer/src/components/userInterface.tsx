@@ -1,13 +1,10 @@
-import { useState } from "react";
 import ExhibitLabel from "../components/exhibitLabel";
 import SideButton from "../components/sideButton";
 import { CzechImage, EnglishImage, DeutschImage } from "../img/languageImages";
 import MapButton from "../components/mapButton";
 import SectionBadge from "../components/sectionBadge";
 import setup from "../../setup.json";
-import { useEffect } from "react";
 import "../App.css";
-import { findSection } from "@renderer/utils/functions";
 
 interface UserInterfaceProps {
   children: React.ReactNode;
@@ -16,6 +13,7 @@ interface UserInterfaceProps {
   handleLanguageClick: () => void;
   handleSideButtonClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   gameStarts: boolean;
+  sectionInfo: any;
 }
 
 const UserInterface: React.FC<UserInterfaceProps> = ({
@@ -24,14 +22,9 @@ const UserInterface: React.FC<UserInterfaceProps> = ({
   handleLanguageClick,
   handleSideButtonClick,
   gameStarts,
+  sectionInfo,
   children,
 }) => {
-  const [sectionInfo, setSectionInfo] = useState<any>({});
-
-  useEffect(() => {
-    setSectionInfo(findSection(setup.section));
-  }, []);
-
   return (
     <>
       <div>

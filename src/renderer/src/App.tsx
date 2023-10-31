@@ -5,7 +5,8 @@ import HowToPage from "./gameInfo/howToPage";
 import KnowMorePage from "./gameInfo/knowMorePage";
 import MapPage from "./components/mapPage";
 import BlackPage from "./components/blackPage";
-import { switchLanguage } from "./utils/functions";
+import { findSection, switchLanguage } from "./utils/functions";
+import setup from "../setup.json";
 
 function App() {
   const [activePage, setActivePage] = useState<string>("home");
@@ -13,10 +14,12 @@ function App() {
   const [gameStarts, setGameStarts] = useState<boolean>(false);
   const [lastActivity, setLastActivity] = useState<Date | null>(null);
   const [isActive, setIsActive] = useState<boolean>(false);
+  const [sectionInfo, setSectionInfo] = useState<any>({});
 
   const inactivityTimeout = 3.5 * 60 * 1000;
 
   useEffect(() => {
+    setSectionInfo(findSection(setup.section));
     const handleActivity = () => {
       setLastActivity(new Date());
       setIsActive(true);
@@ -67,6 +70,7 @@ function App() {
           handleLanguageClick={handleLanguageClick}
           handleSideButtonClick={handleSideButtonClick}
           gameStarts={gameStarts}
+          sectionInfo={sectionInfo}
         >
           <Game
             language={language}
