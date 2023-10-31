@@ -7,8 +7,6 @@ interface AddDescToImageProps {
   setCapturedImageData: (data: string | null) => void;
   setCroppedImageData: (data: string | null) => void;
   croppedImageData: any;
-  finalImageData: string | null;
-  setFinalImageData: (data: string | null) => void;
   desc: string;
   setDesc: (value: string) => void;
   handleSave: () => void;

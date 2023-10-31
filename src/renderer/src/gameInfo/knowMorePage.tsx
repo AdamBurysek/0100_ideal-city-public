@@ -7,7 +7,12 @@ import TheLine from "../game/images/The Line, Spojené arabské emiráty.webp
 import Vilatopia from "../game/images/Vilatopia, Nizozemsko.jpeg";
 import { useEffect, useRef } from "react";
 
-const KnowMorePage = (props: any) => {
+interface KnowMorePageProps {
+  activePage: string;
+  language: string;
+}
+
+const KnowMorePage: React.FC<KnowMorePageProps> = (props) => {
   const knowMoreElement = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,15 +32,6 @@ const KnowMorePage = (props: any) => {
         ref={knowMoreElement}
         className="know-more_content"
       >
-        {/* {props.language === "cz" && (
-          <div dangerouslySetInnerHTML={{ __html: czText }} />
-        )}
-        {props.language === "en" && (
-          <div dangerouslySetInnerHTML={{ __html: enText }} />
-        )}
-        {props.language === "de" && (
-          <div dangerouslySetInnerHTML={{ __html: deText }} />
-        )} */}
         <div>
           <h1>Masdar City</h1>
           <img

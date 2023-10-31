@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import AdminLogin from "./components/adminLogin";
 import AdminPanel from "./components/adminPanel";
 import AdminCropImage from "./components/adminCropImage";
-import IdealCityDataService from "./services/idealCity.js";
+import IdealCityDataService from "./services/idealCity";
 
 type ImageItem = {
   id: string;
@@ -18,7 +18,14 @@ type ImageItem = {
   deletable: boolean;
 };
 
-function AppGame(props: any) {
+interface GameProps {
+  language: string;
+  setGameStarts: (value: boolean) => void;
+  gameStarts: boolean;
+  isActive: boolean;
+}
+
+function AppGame(props: GameProps) {
   const [images, setImages] = useState<ImageItem[]>([]);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [sequence, setSequence] = useState<string[]>([]);
@@ -28,7 +35,6 @@ function AppGame(props: any) {
   const [croppedImageData, setCroppedImageData] = useState<string | null>(null);
   const [thumbnail, setThumbnail] = useState<string | null>(null);
   const [desc, setDesc] = useState<string>("");
-  const [finalImageData, setFinalImageData] = useState<string | null>(null);
   const [admminPassword, setAdminPassword] = useState<string | null>(null);
   const [maximumStoredImages, setMaximumStoredImages] = useState<number>(50);
 
@@ -98,11 +104,7 @@ function AppGame(props: any) {
           deletable: true,
         };
 
-        IdealCityDataService.addImage(JSON.stringify(imageItem)).then(
-          (response: any) => {
-            console.log(response);
-          }
-        );
+        IdealCityDataService.addImage(JSON.stringify(imageItem));
 
         setImages((prevImages) => {
           let updatedImages = [...prevImages];
@@ -112,12 +114,7 @@ function AppGame(props: any) {
             );
             for (const image of sortedImages) {
               if (image.deletable) {
-                console.log(`Image with ID ${image.id} will be deleted.`);
-                IdealCityDataService.deleteImage(image.id).then(
-                  (response: any) => {
-                    console.log(response);
-                  }
-                );
+                IdealCityDataService.deleteImage(image.id);
                 updatedImages = updatedImages.filter(
                   (img) => img.id !== image.id
                 );
@@ -140,9 +137,7 @@ function AppGame(props: any) {
   };
 
   const handleDelete = (id: string) => {
-    IdealCityDataService.deleteImage(id).then((response: any) => {
-      console.log(response);
-    });
+    IdealCityDataService.deleteImage(id);
     setImages((prevImages) => {
       const updatedImages = prevImages.filter((image) => image.id !== id);
       return updatedImages;
@@ -150,9 +145,7 @@ function AppGame(props: any) {
   };
 
   const handleDeletableChange = (id: string, value: boolean) => {
-    IdealCityDataService.updateImage(id, value).then((response: any) => {
-      console.log(response);
-    });
+    IdealCityDataService.updateImage(id, value);
     const updatedImages = images.map((image) => {
       if (image.id === id) {
         return { ...image, deletable: value };
@@ -210,8 +203,6 @@ function AppGame(props: any) {
               setCapturedImageData={setCapturedImageData}
               setCroppedImageData={setCroppedImageData}
               croppedImageData={croppedImageData}
-              finalImageData={finalImageData}
-              setFinalImageData={setFinalImageData}
               desc={desc}
               setDesc={setDesc}
               handleSave={handleSave}

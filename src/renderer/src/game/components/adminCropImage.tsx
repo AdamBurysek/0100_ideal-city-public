@@ -3,6 +3,7 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import { useEffect, useRef, useState } from "react";
 import { RotateIcon } from "../images/Icons/menuIcons";
+import imageSize from "../data/imageSize.json";
 
 interface AdminCropImageProps {
   desc: string;
@@ -32,7 +33,7 @@ const AdminCropImage: React.FC<AdminCropImageProps> = (props) => {
   const cropperRef = useRef<any>(null);
 
   function reduceImageQuality(maxSizeInMB: number) {
-    let quality = 0.5;
+    let quality = imageSize.startingQuality;
     const imageElement = cropperRef?.current;
     const cropper = imageElement?.cropper;
     if (cropper) {
@@ -52,8 +53,8 @@ const AdminCropImage: React.FC<AdminCropImageProps> = (props) => {
   }
 
   const handleAdminCrop = () => {
-    const dataUrl = reduceImageQuality(0.3);
-    const thumbnailUrl = reduceImageQuality(0.1);
+    const dataUrl = reduceImageQuality(imageSize.originalSizeInMb);
+    const thumbnailUrl = reduceImageQuality(imageSize.thumbnailSizeInMb);
     props.setCroppedImageData(dataUrl);
     props.setThumbnail(thumbnailUrl);
   };

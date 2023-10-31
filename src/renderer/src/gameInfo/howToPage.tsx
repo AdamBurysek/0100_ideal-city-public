@@ -1,12 +1,12 @@
 import "./howToPage.css";
-import data from "../../howTo.json";
 import { useEffect, useRef } from "react";
 
-const HowToPage = (props: any) => {
-  const czText = data.text_cz;
-  const enText = data.text_en;
-  const deText = data.text_de;
+interface HowToPageProps {
+  activePage: string;
+  language: string;
+}
 
+const HowToPage: React.FC<HowToPageProps> = (props) => {
   const howToElement = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,13 +28,36 @@ const HowToPage = (props: any) => {
         className="how-to_content"
       >
         {props.language === "cz" && (
-          <div dangerouslySetInnerHTML={{ __html: czText }} />
+          <p>
+            Vezměte si arch papíru a navrhněte město, v jakém byste rádi žili,
+            popřípadě úpravy, jež by vaše město či obec udělaly lepším místem k
+            životu. Doplníte-li obrázek textem, bude mu lépe rozumět. Pokud
+            chcete, můžete vlastní příspěvek vyfotografovat a vložit do
+            databáze, kterou si všichni návštěvníci mohou volně procházet. Stačí
+            kliknout na tlačítko 'Nahrát obrázek' a postupovat podle návodu.
+          </p>
         )}
         {props.language === "en" && (
-          <div dangerouslySetInnerHTML={{ __html: enText }} />
+          <p>
+            Take a piece of paper and design a city you would like to live in,
+            or suggest changes that would make your city or town a better place
+            to live. If you add text to the picture, it will be easier to
+            understand. If you want, you can photograph your own submission and
+            add it to a database that all visitors can freely browse. Just click
+            the 'Upload Image' button and follow the instructions.
+          </p>
         )}
         {props.language === "de" && (
-          <div dangerouslySetInnerHTML={{ __html: deText }} />
+          <p>
+            Nehmen Sie ein Blatt Papier und entwerfen Sie eine Stadt, in der Sie
+            gerne leben würden, oder schlagen Sie Änderungen vor, die Ihre Stadt
+            oder Gemeinde zu einem besseren Ort zum Leben machen würden. Wenn
+            Sie dem Bild Text hinzufügen, wird es besser verständlich. Wenn Sie
+            möchten, können Sie Ihren eigenen Beitrag fotografieren und in eine
+            Datenbank einfügen, die alle Besucher frei durchsuchen können.
+            Klicken Sie einfach auf die Schaltfläche 'Bild hochladen' und folgen
+            Sie den Anweisungen.
+          </p>
         )}
       </div>
     </div>

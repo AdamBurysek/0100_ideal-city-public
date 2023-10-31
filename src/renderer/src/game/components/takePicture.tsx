@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
+import imageSize from "../data/imageSize.json";
 
 interface TakePictureProps {
   setGameStarts: (value: boolean) => void;
@@ -48,7 +49,10 @@ function TakePicture(props: TakePictureProps) {
       const context = canvasRef.current.getContext("2d");
       if (context) {
         context.drawImage(videoRef.current, 0, 0, 4032, 3024);
-        const imageData = canvasRef.current.toDataURL("image/webp", 0.5);
+        const imageData = canvasRef.current.toDataURL(
+          "image/webp",
+          imageSize.startingQuality
+        );
         props.setCapturedImageData(imageData);
         navigate("/cropimage");
       }

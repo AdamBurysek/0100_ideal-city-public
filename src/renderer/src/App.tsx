@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import Game from "./game/Game";
 import HowToPage from "./gameInfo/howToPage";
 import KnowMorePage from "./gameInfo/knowMorePage";
-import MapPage from "./components/sideButtons/mapPage";
-import BlackPage from "./components/sideButtons/blackPage";
+import MapPage from "./components/mapPage";
+import BlackPage from "./components/blackPage";
 import { switchLanguage } from "./utils/functions";
 
 function App() {

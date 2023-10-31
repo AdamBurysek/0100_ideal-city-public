@@ -3,10 +3,9 @@
   top: 100px;
   left: 700px;
   color: white;
-  /* scale: 2; */
 }
 
-.img_title {
+.admin_input.img_title {
   position: absolute;
   top: 630px;
   width: 500px;

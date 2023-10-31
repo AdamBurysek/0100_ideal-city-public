@@ -17,7 +17,6 @@
   width: 1600px;
   height: 800px;
   overflow-y: auto;
-  /* background-color: red; */
 }
 
 .know-more_content h1 {
@@ -48,26 +47,6 @@ b {
   color: white;
   font-family: "Dimenze-Regular";
   font-size: 48px;
-}
-
-::-webkit-scrollbar {
-  height: 12px;
-  width: 15px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #d88124;
-  -webkit-border-radius: 10px;
-  -webkit-box-shadow: 0px 1px 2px #d88124;
-}
-
-::-webkit-scrollbar-corner {
-  background: #d88124;
-}
-
-::-webkit-scrollbar-track {
-  background: #515151;
-  -webkit-border-radius: 10px;
 }
 
 .city_img {

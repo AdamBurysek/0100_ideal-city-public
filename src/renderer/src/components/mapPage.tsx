@@ -1,7 +1,12 @@
 import "./mapPage.css";
-import VIDAmap from "../../img/VIDAmap.png";
+import VIDAmap from "../img/VIDAmap.png";
 
-const MapPage = (props: any) => {
+interface MapPageProps {
+  activePage: string;
+  language: string;
+}
+
+const MapPage: React.FC<MapPageProps> = (props) => {
   return (
     <div
       className={
