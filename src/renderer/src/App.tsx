@@ -9,6 +9,7 @@ import AdminLogin from "./components/adminLogin";
 import AdminPanel from "./components/adminPanel";
 import AdminCropImage from "./components/adminCropImage";
 import IdealCityDataService from "./services/idealCity";
+import "./App.css";
 
 type ImageItem = {
   id: string;

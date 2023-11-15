@@ -11,6 +11,13 @@
   src: url("./fonts/Dimenze-Regular.otf") format("opentype");
 }
 
+.game {
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  z-index: 0;
+}
+
 h1,
 h4 {
   font-family: "Dimenze-Bold ";
