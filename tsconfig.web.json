@@ -19,7 +19,6 @@
   "files": [
     // other files...
     "src/renderer/setup.json",
-    "src/renderer/src/data/sectionsData.json",
-    "src/renderer/src/game/data/imageSize.json",
+    "src/renderer/src/data/imageSize.json",
   ]
 }
