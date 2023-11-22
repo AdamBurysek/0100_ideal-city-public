@@ -49,6 +49,11 @@ function App(props: any) {
   function gameReset() {
     if (props.isActive === false) {
       navigate("/");
+      setDesc("");
+      setCapturedImageData(null);
+      setCroppedImageData(null);
+      setThumbnail(null);
+      resetSequence();
       props.setGameStarts(false);
     }
   }
