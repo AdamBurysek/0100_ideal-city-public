@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AdminAddImg from "./adminAddImg";
 import AdminEditImg from "./adminEditImg";
 import "./adminPanel.css";
@@ -30,6 +30,7 @@ interface AdminPanelProps {
 
 const AdminPanel: React.FC<AdminPanelProps> = (props) => {
   const [adminCurrentPage, setAdminCurrentPage] = useState<string>("editImg");
+
   const navigate = useNavigate();
 
   function handleAdminBackButtonClick() {
@@ -58,7 +59,7 @@ const AdminPanel: React.FC<AdminPanelProps> = (props) => {
           handleNextClick={handleNextClick}
           handleFileChange={props.handleFileChange}
           capturedImageData={props.capturedImageData}
-        ></AdminAddImg>
+        />
       )}
       {adminCurrentPage === "editImg" && (
         <AdminEditImg
@@ -66,7 +67,7 @@ const AdminPanel: React.FC<AdminPanelProps> = (props) => {
           handleDelete={props.handleDelete}
           handleDeletableChange={props.handleDeletableChange}
           maximumStoredImages={props.maximumStoredImages}
-        ></AdminEditImg>
+        />
       )}
       <button
         className={

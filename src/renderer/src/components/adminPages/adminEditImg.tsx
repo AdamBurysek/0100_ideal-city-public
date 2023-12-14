@@ -1,4 +1,4 @@
-import { PinIcon, TrashIcon } from "../images/Icons/adminIcons";
+import { PinIcon, TrashIcon } from "../../assets/icons/adminIcons";
 
 type ImageItem = {
   id: string;
@@ -33,7 +33,7 @@ const AdminEditImg: React.FC<AdminEditImgProps> = (props) => {
                 className="deletable_button delete_button"
                 onClick={() => props.handleDelete(image.id)}
               >
-                <TrashIcon></TrashIcon>
+                <TrashIcon />
               </button>
             )}
             <button
@@ -47,7 +47,7 @@ const AdminEditImg: React.FC<AdminEditImgProps> = (props) => {
               }
             >
               <div className="edit-button_icon">
-                <PinIcon></PinIcon>
+                <PinIcon />
               </div>
             </button>
           </div>

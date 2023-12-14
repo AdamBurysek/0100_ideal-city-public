@@ -1,4 +1,4 @@
-import KeyboardComponent from "./keyboard";
+import KeyboardComponent from "../keyboard";
 
 interface AdminAddImgProps {
   desc: string;
@@ -44,7 +44,7 @@ const AdminAddImg: React.FC<AdminAddImgProps> = (props) => {
         <KeyboardComponent
           setDesc={props.setDesc}
           desc={props.desc}
-        ></KeyboardComponent>
+        />
       </div>
     </>
   );

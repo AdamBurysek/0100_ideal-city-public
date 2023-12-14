@@ -126,7 +126,6 @@ h3 {
   width: 4032px;
   height: 3024x;
   overflow: hidden;
-  /* position: relative; */
 }
 
 .scale_video {
@@ -203,7 +202,6 @@ h3 {
 
 .hidden_buttons button {
   position: absolute;
-  /* bottom: 0px; */
   width: 150px;
   height: 150px;
   background-color: rgb(0, 0, 0);
@@ -321,7 +319,6 @@ h3 {
   top: 302px;
   left: 75px;
   white-space: pre-line;
-  /* text-align: justify; */
 }
 
 .step_info-smaller {

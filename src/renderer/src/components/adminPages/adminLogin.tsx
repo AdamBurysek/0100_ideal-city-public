@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import KeyboardComponent from "./keyboard";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import KeyboardComponent from "../keyboard";
 
 interface AdminLoginProps {
   desc: string;
@@ -33,11 +33,8 @@ const AdminLogin: React.FC<AdminLoginProps> = (props) => {
 
   function wrongPassword() {
     setShowWrongSign(true);
-
     setTimeout(() => {
       setShowWrongSign(false);
-
-      console.log(props.desc);
     }, 2000);
   }
 
@@ -52,12 +49,12 @@ const AdminLogin: React.FC<AdminLoginProps> = (props) => {
           placeholder={showWrongSign ? "Type Password" : ""}
           value={props.desc}
           onChange={(e) => props.setDesc(e.target.value)}
-        ></input>
+        />
         <div className="keyboard_container">
           <KeyboardComponent
             setDesc={props.setDesc}
             desc={props.desc}
-          ></KeyboardComponent>
+          />
         </div>
         <button
           className="city_button back_button"

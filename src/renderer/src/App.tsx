@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import StartPage from "./components/startPage";
 import TakePicture from "./components/takePicture";
-import { useEffect, useState } from "react";
 import CropImage from "./components/cropImage";
 import AddDescToImage from "./components/addDescToImage";
-import { useNavigate } from "react-router-dom";
-import AdminLogin from "./components/adminLogin";
-import AdminPanel from "./components/adminPanel";
-import AdminCropImage from "./components/adminCropImage";
+import AdminLogin from "./components/adminPages/adminLogin";
+import AdminPanel from "./components/adminPages/adminPanel";
+import AdminCropImage from "./components/adminPages/adminCropImage";
 import IdealCityDataService from "./services/idealCity";
 import "./App.css";
 
@@ -35,6 +35,10 @@ function App(props: any) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    gameReset();
+  }, [props.isActive]);
+
+  useEffect(() => {
     IdealCityDataService.getImages().then((response: any) => {
       setImages(JSON.parse(JSON.stringify(response.data.images)));
     });
@@ -58,10 +62,6 @@ function App(props: any) {
     }
   }
 
-  useEffect(() => {
-    gameReset();
-  }, [props.isActive]);
-
   const handleAdminButtonClick = (num: string) => {
     const newSequence = [...sequence, num];
     if (newSequence.join("") === "123") {
@@ -81,7 +81,6 @@ function App(props: any) {
 
     if (file) {
       const reader = new FileReader();
-
       reader.onloadend = function () {
         const base64String = reader.result as string;
         setCapturedImageData(base64String);
@@ -104,7 +103,6 @@ function App(props: any) {
         };
 
         IdealCityDataService.addImage(JSON.stringify(imageItem));
-
         setImages((prevImages) => {
           let updatedImages = [...prevImages];
           while (updatedImages.length + 1 > maximumStoredImages) {

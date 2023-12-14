@@ -1,15 +1,11 @@
 {
-  "server": false,
   "id": "131",
   "section": "civilisation",
   "label": {
-    "cz": "ideální město",
-    "en": "ideal city",
-    "de": "idealstadt"
+    "cz": "Ideální město",
+    "en": "Ideal City",
+    "de": "Idealstadt"
   },
-  "x": 50,
-  "y": 50,
-  "inactivityTimeoutInMin": 3.5,
-  "port": "/dev/ttyUSB0",
-  "baudrate": 9600
+  "exhibitPostion": { "x": 50, "y": 50 },
+  "inactivityTimeoutInMin": 3.5
 }

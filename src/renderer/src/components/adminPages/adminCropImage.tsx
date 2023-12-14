@@ -1,9 +1,9 @@
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cropper from "react-cropper";
+import { RotateIcon } from "../../assets/icons/menuIcons";
+import imageSize from "../../data/imageSize.json";
 import "cropperjs/dist/cropper.css";
-import { useEffect, useRef, useState } from "react";
-import { RotateIcon } from "../images/Icons/menuIcons";
-import imageSize from "../data/imageSize.json";
 
 interface AdminCropImageProps {
   desc: string;
@@ -100,7 +100,7 @@ const AdminCropImage: React.FC<AdminCropImageProps> = (props) => {
         </div>
       </div>
       <div className="rotate_icon">
-        <RotateIcon></RotateIcon>
+        <RotateIcon />
       </div>
       <div className="rotate-slider_box">
         <input

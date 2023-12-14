@@ -38,7 +38,6 @@ const AddDescToImage: React.FC<AddDescToImageProps> = (props) => {
         alt=""
         style={{ width: 1080 / 1.3, height: 763.682647 / 1.3 }}
       />
-
       <div className="desc_background"></div>
       <h1 className="desc_textarea">{props.desc}</h1>
       <div className="step_box">
@@ -98,7 +97,7 @@ const AddDescToImage: React.FC<AddDescToImageProps> = (props) => {
         <KeyboardComponent
           setDesc={props.setDesc}
           desc={props.desc}
-        ></KeyboardComponent>
+        />
       </div>
     </>
   );

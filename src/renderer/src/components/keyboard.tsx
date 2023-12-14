@@ -40,6 +40,7 @@ function KeyboardComponent(props: KeyboardComponentProps) {
       "{space}",
     ],
   };
+
   const onChange = (input: string) => {
     if (input === "{bksp}") {
       props.setDesc(input);
@@ -63,6 +64,7 @@ function KeyboardComponent(props: KeyboardComponentProps) {
         : "shift";
     setLayout(newLayoutName);
   };
+
   const handleNum = () => {
     const newLayoutName =
       layout === "default"

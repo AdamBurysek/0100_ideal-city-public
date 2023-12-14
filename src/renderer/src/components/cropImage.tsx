@@ -1,9 +1,9 @@
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cropper from "react-cropper";
-import "cropperjs/dist/cropper.css";
-import { useEffect, useRef, useState } from "react";
-import { RotateIcon } from "../images/Icons/menuIcons";
+import { RotateIcon } from "../assets/icons/menuIcons";
 import imageSize from "../data/imageSize.json";
+import "cropperjs/dist/cropper.css";
 
 interface CropImageProps {
   setGameStarts: (value: boolean) => void;
@@ -15,9 +15,9 @@ interface CropImageProps {
 }
 
 const CropImage: React.FC<CropImageProps> = (props) => {
-  const navigate = useNavigate();
-
   const [rotateImg, setRotateImg] = useState(0);
+
+  const navigate = useNavigate();
 
   function handleBackCropImageClick() {
     props.setCapturedImageData(null);
@@ -40,7 +40,6 @@ const CropImage: React.FC<CropImageProps> = (props) => {
           quality -= 0.05;
           dataUrl = croppedCanvas.toDataURL("image/webp", quality);
         }
-
         return dataUrl;
       }
     }
@@ -89,7 +88,7 @@ const CropImage: React.FC<CropImageProps> = (props) => {
         </div>
       </div>
       <div className="rotate_icon">
-        <RotateIcon></RotateIcon>
+        <RotateIcon />
       </div>
       <div className="rotate-slider_box">
         <input

@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
-  "author": "example.com",
-  "homepage": "https://www.electronjs.org",
+  "author": "Adam Buryšek",
+  "homepage": "https://adamplanet.cz/ostatniweby/idealcity/",
   "build": {
-    "productName": "ideal-city"
+    "productName": "VIDA - Ideal City",
+    "icon": "./resources/icon.png"
   },
   "scripts": {
     "format": "prettier --write .",

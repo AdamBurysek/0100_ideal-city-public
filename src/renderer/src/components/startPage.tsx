@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { useNavigate } from "react-router-dom";
 
 type ImageItem = {
   id: string;
@@ -53,11 +53,11 @@ const StartPage: React.FC<StartPageProps> = (props) => {
     navigate("/takepicture");
   }
 
-  const handleSlideChange = (index: number) => {
+  const onSlideChange = (index: number) => {
     setCurrentDesc(props.images[index].originalTitle);
   };
 
-  const handleFullscreenChange = (status: boolean) => {
+  const onFullscreenChange = (status: boolean) => {
     setIsFullscreen(status);
   };
 
@@ -71,8 +71,8 @@ const StartPage: React.FC<StartPageProps> = (props) => {
             showFullscreenButton={props.isActive ? true : false}
             showPlayButton={props.isActive ? true : false}
             showNav={false}
-            onSlide={handleSlideChange}
-            onScreenChange={handleFullscreenChange}
+            onSlide={onSlideChange}
+            onScreenChange={onFullscreenChange}
           />
         </div>
         <div

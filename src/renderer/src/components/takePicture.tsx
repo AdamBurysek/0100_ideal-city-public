@@ -13,21 +13,21 @@ interface TakePictureProps {
 function TakePicture(props: TakePictureProps) {
   const [stepAnimation, setStepAnimation] = useState<boolean>(false);
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setStepAnimation(true);
+    initializeCamera();
+  }, []);
 
   function handleBackTakePictureClick() {
     props.setGameStarts(false);
     navigate("/");
     setStepAnimation(false);
   }
-
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    setStepAnimation(true);
-    initializeCamera();
-  }, []);
 
   const initializeCamera = async () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -70,7 +70,7 @@ function TakePicture(props: TakePictureProps) {
                 width="4032"
                 height="3024"
                 autoPlay
-              ></video>
+              />
               <canvas
                 ref={canvasRef}
                 width="4032"
@@ -80,7 +80,7 @@ function TakePicture(props: TakePictureProps) {
                   left: "0px",
                   display: "none",
                 }}
-              ></canvas>
+              />
             </div>
           </div>
           <button
