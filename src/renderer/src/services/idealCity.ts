@@ -2,19 +2,22 @@ import http from "../apiAxios";
 
 class IdealCityDataService {
   getImages() {
-    return http.get("/idealcity");
+    return http.get("/public");
   }
 
   addImage(data: any) {
-    return http.post("/idealcity", data);
+    // THIS PART OF BACKEND IS NOT INCLUDED
+    return console.log(data);
   }
 
   updateImage(id: string, value: boolean) {
-    return http.put("/idealcity", { id, value });
+    // THIS PART OF BACKEND IS NOT INCLUDED
+    return console.log(id, value);
   }
 
   deleteImage(id: string) {
-    return http.delete(`/idealcity/delete?id=${id}`);
+    // THIS PART OF BACKEND IS NOT INCLUDED
+    return console.log(id);
   }
 
   getAdminPassword() {
