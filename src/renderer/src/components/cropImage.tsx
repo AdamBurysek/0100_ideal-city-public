@@ -83,7 +83,7 @@ const CropImage: React.FC<CropImageProps> = (props) => {
             minCropBoxWidth={1080}
             zoomable={true}
             zoomOnWheel={true}
-            zoomTo={0.27}
+            zoomTo={0.268}
           />
         </div>
       </div>
