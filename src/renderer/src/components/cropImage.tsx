@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cropper from "react-cropper";
+import Loading from "./loading";
 import { RotateIcon } from "../assets/icons/menuIcons";
 import imageSize from "../data/imageSize.json";
 import "cropperjs/dist/cropper.css";
@@ -16,6 +17,7 @@ interface CropImageProps {
 
 const CropImage: React.FC<CropImageProps> = (props) => {
   const [rotateImg, setRotateImg] = useState(0);
+  const [showLoading, setShowLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -46,11 +48,14 @@ const CropImage: React.FC<CropImageProps> = (props) => {
   }
 
   const handleCrop = () => {
-    const dataUrl = reduceImageQuality(imageSize.originalSizeInMb);
-    const thumbnailUrl = reduceImageQuality(imageSize.thumbnailSizeInMb);
-    props.setCroppedImageData(dataUrl);
-    props.setThumbnail(thumbnailUrl);
-    navigate("/imagedesc");
+    setShowLoading(true);
+    setTimeout(() => {
+      const dataUrl = reduceImageQuality(imageSize.originalSizeInMb);
+      const thumbnailUrl = reduceImageQuality(imageSize.thumbnailSizeInMb);
+      props.setCroppedImageData(dataUrl);
+      props.setThumbnail(thumbnailUrl);
+      navigate("/imagedesc");
+    }, 10);
   };
 
   function rotateImage() {
@@ -68,6 +73,7 @@ const CropImage: React.FC<CropImageProps> = (props) => {
   return (
     <>
       <div className="image-capture_container">
+        {showLoading ? <Loading /> : null}
         <div className="red_outline">
           <Cropper
             ref={cropperRef}

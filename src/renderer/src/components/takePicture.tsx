@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 import imageSize from "../data/imageSize.json";
+import Loading from "./loading";
 
 interface TakePictureProps {
   setGameStarts: (value: boolean) => void;
@@ -12,6 +13,7 @@ interface TakePictureProps {
 
 function TakePicture(props: TakePictureProps) {
   const [stepAnimation, setStepAnimation] = useState<boolean>(false);
+  const [showLoading, setShowLoading] = useState<boolean>(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -52,26 +54,32 @@ function TakePicture(props: TakePictureProps) {
   };
 
   const captureImage = () => {
-    if (videoRef.current && canvasRef.current) {
-      const context = canvasRef.current.getContext("2d");
-      if (context) {
-        context.drawImage(videoRef.current, 0, 0, 4032, 3024);
-        const imageData = canvasRef.current.toDataURL(
-          "image/webp",
-          imageSize.startingQuality
-        );
-        props.setCapturedImageData(imageData);
-        navigate("/cropimage");
+    setShowLoading(true);
+    setTimeout(() => {
+      if (videoRef.current && canvasRef.current) {
+        const context = canvasRef.current.getContext("2d");
+        if (context) {
+          context.drawImage(videoRef.current, 0, 0, 4032, 3024);
+          const imageData = canvasRef.current.toDataURL(
+            "image/webp",
+            imageSize.startingQuality
+          );
+          props.setCapturedImageData(imageData);
+          navigate("/cropimage");
+        }
       }
-    }
+    }, 10);
   };
 
   return (
     <div>
       <div className="image-capture_container">
+        {showLoading ? <Loading /> : null}
         <div>
           <div className="scale_video">
             <div className="video_container">
+              <div className="video_mask-one" />
+              <div className="video_mask-two" />
               <video
                 ref={videoRef}
                 width="4032"

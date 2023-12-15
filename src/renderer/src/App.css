@@ -128,6 +128,23 @@ h3 {
   overflow: hidden;
 }
 
+.video_mask-one {
+  position: absolute;
+  left: -50px;
+  width: 4200px;
+  height: 160px;
+  background-color: black;
+}
+
+.video_mask-two {
+  position: absolute;
+  top: 2850px;
+  left: -50px;
+  width: 4200px;
+  height: 160px;
+  background-color: black;
+}
+
 .scale_video {
   position: absolute;
   top: -1000px;
@@ -340,4 +357,26 @@ h3 {
 .step_box-hide {
   top: 0;
   left: -365px;
+}
+
+.loading_container {
+  position: absolute;
+  left: 400px;
+  top: 100px;
+  z-index: 999;
+  width: 1500px;
+  height: 1000px;
+  background-color: black;
+}
+
+.loader_spinner {
+  position: absolute;
+  left: 280px;
+}
+
+.loading-text {
+  position: absolute;
+  color: #d88124;
+  left: 420px;
+  top: 450px;
 }

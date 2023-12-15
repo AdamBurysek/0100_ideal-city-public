@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import KeyboardComponent from "./keyboard";
+import { useState } from "react";
+import Loading from "./loading";
 
 interface AddDescToImageProps {
   setGameStarts: (value: boolean) => void;
@@ -15,6 +17,7 @@ interface AddDescToImageProps {
 
 const AddDescToImage: React.FC<AddDescToImageProps> = (props) => {
   const navigate = useNavigate();
+  const [showLoading, setShowLoading] = useState<boolean>(false);
 
   function handleBackCropImageClick() {
     props.setCroppedImageData(null);
@@ -23,15 +26,19 @@ const AddDescToImage: React.FC<AddDescToImageProps> = (props) => {
   }
 
   function handleSaveImageClick() {
-    if (props.croppedImageData) {
-      props.handleSave();
-      navigate("/");
-      props.setGameStarts(false);
-    }
+    setShowLoading(true);
+    setTimeout(() => {
+      if (props.croppedImageData) {
+        props.handleSave();
+        navigate("/");
+        props.setGameStarts(false);
+      }
+    }, 10);
   }
 
   return (
     <>
+      {showLoading ? <Loading /> : null}
       <img
         className="desc_img"
         src={props.croppedImageData}
