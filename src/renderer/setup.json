@@ -6,6 +6,6 @@
     "en": "Ideal City",
     "de": "Idealstadt"
   },
-  "exhibitPostion": { "x": 50, "y": 50 },
+  "exhibitPostion": { "x": 580, "y": 380 },
   "inactivityTimeoutInMin": 3.5
 }
