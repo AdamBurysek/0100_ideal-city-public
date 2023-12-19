@@ -34,15 +34,8 @@ function TakePicture(props: TakePictureProps) {
   const initializeCamera = async () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
-        const aspectRatio = 1080 / 763.682647;
-        const cameraHeight = 2160;
-        const cameraWidth = Math.floor(aspectRatio * cameraHeight);
-
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: {
-            width: { ideal: cameraWidth },
-            height: { ideal: cameraHeight },
-          },
+          video: true,
         });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
