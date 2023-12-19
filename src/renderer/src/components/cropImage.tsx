@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cropper from "react-cropper";
+import Loading from "./loading";
 import { RotateIcon } from "../assets/icons/menuIcons";
 import imageSize from "../data/imageSize.json";
 import "cropperjs/dist/cropper.css";
@@ -16,6 +17,7 @@ interface CropImageProps {
 
 const CropImage: React.FC<CropImageProps> = (props) => {
   const [rotateImg, setRotateImg] = useState(0);
+  const [showLoading, setShowLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -46,11 +48,14 @@ const CropImage: React.FC<CropImageProps> = (props) => {
   }
 
   const handleCrop = () => {
-    const dataUrl = reduceImageQuality(imageSize.originalSizeInMb);
-    const thumbnailUrl = reduceImageQuality(imageSize.thumbnailSizeInMb);
-    props.setCroppedImageData(dataUrl);
-    props.setThumbnail(thumbnailUrl);
-    navigate("/imagedesc");
+    setShowLoading(true);
+    setTimeout(() => {
+      const dataUrl = reduceImageQuality(imageSize.originalSizeInMb);
+      const thumbnailUrl = reduceImageQuality(imageSize.thumbnailSizeInMb);
+      props.setCroppedImageData(dataUrl);
+      props.setThumbnail(thumbnailUrl);
+      navigate("/imagedesc");
+    }, 10);
   };
 
   function rotateImage() {
@@ -66,8 +71,9 @@ const CropImage: React.FC<CropImageProps> = (props) => {
   }, [rotateImg]);
 
   return (
-    <>
+    <div className="container">
       <div className="image-capture_container">
+        {showLoading ? <Loading /> : null}
         <div className="red_outline">
           <Cropper
             ref={cropperRef}
@@ -83,7 +89,7 @@ const CropImage: React.FC<CropImageProps> = (props) => {
             minCropBoxWidth={1080}
             zoomable={true}
             zoomOnWheel={true}
-            zoomTo={0.27}
+            zoomTo={0.268}
           />
         </div>
       </div>
@@ -100,52 +106,54 @@ const CropImage: React.FC<CropImageProps> = (props) => {
           onChange={(e) => setRotateImg(parseInt(e.target.value))}
         />
       </div>
-      <div className="step_box">
-        <h3 className="step_text">
-          {props.language === "cz" && "Krok 2/3"}
-          {props.language === "en" && "Step 2/3"}
-          {props.language === "de" && "Schritt 2/3"}
-        </h3>
-        <h2
-          className={
-            props.language === "de"
-              ? "step_headline step_headline-smaller"
-              : "step_headline"
-          }
-        >
-          {props.language === "cz" && "Ořízni obrázek"}
-          {props.language === "en" && "Crop the image"}
-          {props.language === "de" && "Schneide das Bild zu"}
-        </h2>
-        <h3
-          className={
-            props.language === "de"
-              ? "step_info step_info-smaller"
-              : "step_info"
-          }
-        >
-          {props.language === "cz" &&
-            `Pomocí jednoho prstu můžete pohybovat obrázkem. 
+      {showLoading ? null : (
+        <div className="step_box">
+          <h3 className="step_text">
+            {props.language === "cz" && "Krok 2/3"}
+            {props.language === "en" && "Step 2/3"}
+            {props.language === "de" && "Schritt 2/3"}
+          </h3>
+          <h2
+            className={
+              props.language === "de"
+                ? "step_headline step_headline-smaller"
+                : "step_headline"
+            }
+          >
+            {props.language === "cz" && "Ořízni obrázek"}
+            {props.language === "en" && "Crop the image"}
+            {props.language === "de" && "Schneide das Bild zu"}
+          </h2>
+          <h3
+            className={
+              props.language === "de"
+                ? "step_info step_info-smaller"
+                : "step_info"
+            }
+          >
+            {props.language === "cz" &&
+              `Pomocí jednoho prstu můžete pohybovat obrázkem. 
             Pomocí dvou prstů
             můžete přiblížit nebo oddálit obrázek. 
             Posuvníkem napravo můžete jemně otáčet obrázkem. 
 
             Po dokončení úprav klikněte na tlačítko
             "Oříznout obrázek".`}
-          {props.language === "en" &&
-            `Using one finger, you can move the image. 
+            {props.language === "en" &&
+              `Using one finger, you can move the image. 
             Using two fingers, you can zoom in or out the image. 
             You can gently rotate the image using the slider on the right. 
             
             After completing the edits, click the "Crop image" button.`}
-          {props.language === "de" &&
-            `Mit einem Finger können Sie das Bild bewegen. 
+            {props.language === "de" &&
+              `Mit einem Finger können Sie das Bild bewegen. 
             Mit zwei Fingern können Sie das Bild heranzoomen oder herauszoomen. 
             Sie können das Bild mit dem Schieberegler auf der rechten Seite sanft drehen. 
             
             Klicken Sie nach Abschluss der Bearbeitungen auf die Schaltfläche "Bild zuschneiden".`}
-        </h3>
-      </div>
+          </h3>
+        </div>
+      )}
       <button
         className="city_button crop_button"
         onClick={handleCrop}
@@ -162,7 +170,7 @@ const CropImage: React.FC<CropImageProps> = (props) => {
         {props.language === "en" && "Back"}
         {props.language === "de" && "Zurück"}
       </button>
-    </>
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 import imageSize from "../data/imageSize.json";
+import Loading from "./loading";
 
 interface TakePictureProps {
   setGameStarts: (value: boolean) => void;
@@ -12,6 +13,7 @@ interface TakePictureProps {
 
 function TakePicture(props: TakePictureProps) {
   const [stepAnimation, setStepAnimation] = useState<boolean>(false);
+  const [showLoading, setShowLoading] = useState<boolean>(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -32,8 +34,15 @@ function TakePicture(props: TakePictureProps) {
   const initializeCamera = async () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
+        const aspectRatio = 1080 / 763.682647;
+        const cameraHeight = 2160;
+        const cameraWidth = Math.floor(aspectRatio * cameraHeight);
+
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
+          video: {
+            width: { ideal: cameraWidth },
+            height: { ideal: cameraHeight },
+          },
         });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
@@ -45,26 +54,32 @@ function TakePicture(props: TakePictureProps) {
   };
 
   const captureImage = () => {
-    if (videoRef.current && canvasRef.current) {
-      const context = canvasRef.current.getContext("2d");
-      if (context) {
-        context.drawImage(videoRef.current, 0, 0, 4032, 3024);
-        const imageData = canvasRef.current.toDataURL(
-          "image/webp",
-          imageSize.startingQuality
-        );
-        props.setCapturedImageData(imageData);
-        navigate("/cropimage");
+    setShowLoading(true);
+    setTimeout(() => {
+      if (videoRef.current && canvasRef.current) {
+        const context = canvasRef.current.getContext("2d");
+        if (context) {
+          context.drawImage(videoRef.current, 0, 0, 4032, 3024);
+          const imageData = canvasRef.current.toDataURL(
+            "image/webp",
+            imageSize.startingQuality
+          );
+          props.setCapturedImageData(imageData);
+          navigate("/cropimage");
+        }
       }
-    }
+    }, 10);
   };
 
   return (
-    <div>
+    <div className="container">
       <div className="image-capture_container">
+        {showLoading ? <Loading /> : null}
         <div>
           <div className="scale_video">
             <div className="video_container">
+              <div className="video_mask-one" />
+              <div className="video_mask-two" />
               <video
                 ref={videoRef}
                 width="4032"
@@ -93,29 +108,31 @@ function TakePicture(props: TakePictureProps) {
           </button>
         </div>
       </div>
-      <div className={stepAnimation ? "step_box" : "step_box step_box-hide"}>
-        <h3 className="step_text">
-          {props.language === "cz" && "Krok 1/3"}
-          {props.language === "en" && "Step 1/3"}
-          {props.language === "de" && "Schritt 1/3"}
-        </h3>
-        <h2 className="step_headline">
-          {props.language === "cz" && "Vyfoť obrázek"}
-          {props.language === "en" && "Take a picture"}
-          {props.language === "de" && "Mach ein Foto"}
-        </h2>
-        <h3 className="step_info">
-          {props.language === "cz" &&
-            `Umístěte obrázek do žlutého obdélníku a poté jej vyfoťte tlačítkem 
+      {showLoading ? null : (
+        <div className={stepAnimation ? "step_box" : "step_box step_box-hide"}>
+          <h3 className="step_text">
+            {props.language === "cz" && "Krok 1/3"}
+            {props.language === "en" && "Step 1/3"}
+            {props.language === "de" && "Schritt 1/3"}
+          </h3>
+          <h2 className="step_headline">
+            {props.language === "cz" && "Vyfoť obrázek"}
+            {props.language === "en" && "Take a picture"}
+            {props.language === "de" && "Mach ein Foto"}
+          </h2>
+          <h3 className="step_info">
+            {props.language === "cz" &&
+              `Umístěte obrázek do žlutého obdélníku a poté jej vyfoťte tlačítkem 
             "Vyfotit obrázek".`}
-          {props.language === "en" &&
-            `Place the image in the yellow rectangle, then take a picture of it using the 
+            {props.language === "en" &&
+              `Place the image in the yellow rectangle, then take a picture of it using the 
             "Take a picture" button.`}
-          {props.language === "de" &&
-            `Legen Sie das Bild in das gelbe Rechteck und machen Sie dann ein Foto davon mit der Schaltfläche 
+            {props.language === "de" &&
+              `Legen Sie das Bild in das gelbe Rechteck und machen Sie dann ein Foto davon mit der Schaltfläche 
           "Bild aufnehmen".`}
-        </h3>
-      </div>
+          </h3>
+        </div>
+      )}
       <button
         className="city_button back_button"
         onClick={handleBackTakePictureClick}
