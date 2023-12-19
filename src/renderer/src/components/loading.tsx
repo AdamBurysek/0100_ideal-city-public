@@ -1,4 +1,4 @@
-import Lol from "../assets/icons/animated-gif-loading-spinner-2.gif";
+import Spinner from "../assets/icons/animated-gif-loading-spinner-2.gif";
 
 const Loading = () => {
   return (
@@ -7,7 +7,7 @@ const Loading = () => {
         <div>
           <img
             className="loader_image"
-            src={Lol}
+            src={Spinner}
           />
         </div>
       </span>
