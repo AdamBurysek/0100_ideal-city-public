@@ -22,8 +22,9 @@ Rozlišení 1920x1080. Hra není responzivní, tudíž se nepřispůsobí veliko
 
 #
 
-![IMG_1501](https://github.com/AdamBurysek/0100-ideal-city-public/assets/114564710/c7bdc643-92da-4d4a-8e63-9f5b0eeebfe5)
-![Snímek obrazovky 2023-11-21 v 13 12 45](https://github.com/AdamBurysek/0100-ideal-city-public/assets/114564710/acc91b56-60d0-4eec-8e6e-cd9708932218)
+![IMG_1501](https://github.com/AdamBurysek/0100_ideal-city-public/assets/114564710/8f3f31b6-97f5-4717-a8a9-98b384bc81e3)
+![Snímek obrazovky 2023-11-21 v 13 12 45](https://github.com/AdamBurysek/0100_ideal-city-public/assets/114564710/1ee94ccd-b4b0-4416-8807-6f0f483a6c56)
+
 
 ## Hra obsahuje několik vychytávek jako:
 
@@ -45,7 +46,8 @@ Pokud uživatel nebude stanovený čas (nastaveno na 3.5 min) používat program
 
 #
 
-![A4 - 1](https://github.com/AdamBurysek/0100-ideal-city-public/assets/114564710/d7b6d1fd-42f6-42a8-917e-9bb4230ffc0f)
+![Admin Menu](https://github.com/AdamBurysek/0100_ideal-city-public/assets/114564710/d5a88ced-2d3c-489c-bcab-649e4ec07763)
+
 
 # electron-app
 
