@@ -37,7 +37,7 @@ const AddDescToImage: React.FC<AddDescToImageProps> = (props) => {
   }
 
   return (
-    <>
+    <div className="container">
       {showLoading ? <Loading /> : null}
       <img
         className="desc_img"
@@ -47,43 +47,45 @@ const AddDescToImage: React.FC<AddDescToImageProps> = (props) => {
       />
       <div className="desc_background"></div>
       <h1 className="desc_textarea">{props.desc}</h1>
-      <div className="step_box">
-        <h3 className="step_text">
-          {props.language === "cz" && "Krok 3/3"}
-          {props.language === "en" && "Step 3/3"}
-          {props.language === "de" && "Schritt 3/3"}
-        </h3>
-        <h2
-          className={
-            props.language === "de"
-              ? "step_headline step_headline-smaller"
-              : "step_headline"
-          }
-        >
-          {props.language === "cz" && "Doplň popisek"}
-          {props.language === "en" && "Add a caption"}
-          {props.language === "de" && "Füge eine Bildunterschrift hinzu"}
-        </h2>
-        <h3
-          className={
-            props.language === "de"
-              ? "step_info step_info-more-padding"
-              : "step_info"
-          }
-        >
-          {props.language === "cz" &&
-            `Pomocí klávesnice na obrazovce můžete zadat popisek k obrázku. 
+      {showLoading ? null : (
+        <div className="step_box">
+          <h3 className="step_text">
+            {props.language === "cz" && "Krok 3/3"}
+            {props.language === "en" && "Step 3/3"}
+            {props.language === "de" && "Schritt 3/3"}
+          </h3>
+          <h2
+            className={
+              props.language === "de"
+                ? "step_headline step_headline-smaller"
+                : "step_headline"
+            }
+          >
+            {props.language === "cz" && "Doplň popisek"}
+            {props.language === "en" && "Add a caption"}
+            {props.language === "de" && "Füge eine Bildunterschrift hinzu"}
+          </h2>
+          <h3
+            className={
+              props.language === "de"
+                ? "step_info step_info-more-padding"
+                : "step_info"
+            }
+          >
+            {props.language === "cz" &&
+              `Pomocí klávesnice na obrazovce můžete zadat popisek k obrázku. 
             
             Tento krok není povinný, ale může být užitečný pro lepší pochopení obsahu
             obrázku.`}
-          {props.language === "en" &&
-            `Using the on-screen keyboard, you can enter a caption for the image. 
+            {props.language === "en" &&
+              `Using the on-screen keyboard, you can enter a caption for the image. 
           
           This step is not mandatory, but it can be useful for better understanding the content of the image.`}
-          {props.language === "de" &&
-            `Mit der Bildschirmtastatur können Sie eine Bildunterschrift für das Bild eingeben. Dieser Schritt ist nicht verpflichtend, kann aber hilfreich sein, um den Inhalt des Bildes besser zu verstehen.`}
-        </h3>
-      </div>
+            {props.language === "de" &&
+              `Mit der Bildschirmtastatur können Sie eine Bildunterschrift für das Bild eingeben. Dieser Schritt ist nicht verpflichtend, kann aber hilfreich sein, um den Inhalt des Bildes besser zu verstehen.`}
+          </h3>
+        </div>
+      )}
       <button
         className="city_button back_button"
         onClick={handleBackCropImageClick}
@@ -106,7 +108,7 @@ const AddDescToImage: React.FC<AddDescToImageProps> = (props) => {
           desc={props.desc}
         />
       </div>
-    </>
+    </div>
   );
 };
 
