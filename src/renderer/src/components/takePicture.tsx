@@ -71,14 +71,9 @@ function TakePicture(props: TakePictureProps) {
         <div>
           <div className="scale_video">
             <div className="video_container">
-              <div className="video_mask-one" />
-              <div className="video_mask-two" />
-              <video
-                ref={videoRef}
-                width="4032"
-                height="3024"
-                autoPlay
-              />
+              {/* <div className="video_mask-one" />
+              <div className="video_mask-two" /> */}
+              <video ref={videoRef} width="4032" height="3024" autoPlay />
               <canvas
                 ref={canvasRef}
                 width="4032"
