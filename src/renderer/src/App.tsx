@@ -40,7 +40,7 @@ function App(props: any) {
 
   useEffect(() => {
     IdealCityDataService.getImages().then((response: any) => {
-      setImages(JSON.parse(JSON.stringify(response.data.images)));
+      setImages(response.data.images);
     });
     IdealCityDataService.getAdminPassword().then((response: any) => {
       setAdminPassword(response.data[0].password);
